@@ -7,12 +7,12 @@ exports.up = async function (knex) {
             .notNullable()
         tbl.text("description")
         tbl.boolean("completed")
-            .notNullable()
+            // .notNullable()
             .defaultTo(false)
     })
 
     await knex.schema.createTable("resources", (tbl) => {
-        tbl.increments()
+        tbl.increments("id")
         tbl.text("resource_name")
             .unique()
             .notNullable()
@@ -20,7 +20,7 @@ exports.up = async function (knex) {
     })
 
     await knex.schema.createTable("tasks", (tbl) => {
-        tbl.increments()
+        tbl.increments("id")
         tbl.integer("project_id")
             .references("id")
             .inTable("projects")
@@ -33,7 +33,7 @@ exports.up = async function (knex) {
         tbl.text("notes")
         tbl.boolean("completed")
             .defaultTo(false)
-            .notNullable()
+            // .notNullable()
     })
 
 }
